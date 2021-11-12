@@ -1,0 +1,14 @@
+# Ignore temporary files
+*~
+
+# Ignore user prefrences
+auto-save-list
+.lsp-session-v1
+recentf
+
+# Ignore build artifacts
+elpa
+piratemacs.el
+lang-go.el
+
+

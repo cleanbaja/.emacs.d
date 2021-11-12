@@ -1,0 +1,150 @@
+#+TITLE: Piratemacs (Main Config)
+#+AUTHOR: Yusuf M (cleanbaja)
+#+DESCRIPTION: Piratemacs is a emacs configuration for maximum productivity (it also helps hide your treasure!)
+
+Tell the user the pirates are coming...
+#+begin_src emacs-lisp
+(message "Ahoy There Matey!")
+#+end_src
+
+
+* Core Configuration
+
+** MELPA Support
+  Here we add support for melpa, since vanilla emacs dosen't support it.
+  We also install use-package since its recommended and enable counsel
+  
+  #+begin_src emacs-lisp
+    (require 'package)
+    (add-to-list 'package-archives
+		 '("melpa" . "https://melpa.org/packages/"))
+    (package-refresh-contents)
+    (package-initialize)
+
+    (unless (package-installed-p 'use-package)
+      (package-install 'use-package))
+
+    (use-package counsel :ensure t)
+  #+end_src
+
+** Evil Support
+  A core part of piratemacs is Evil Mode (which provides vim keybindings for emacs). It is especially
+  important because I know like ~10 emacs keys, and I use evil-mode for the rest
+
+  *NOTE*: We install evil-magit to make evil keybindings work with magit
+  
+  #+begin_src emacs-lisp  
+    (use-package evil
+      :ensure t
+      :init
+      (setq evil-want-integration t)
+      (setq evil-want-keybinding nil)
+      (setq evil-vsplit-windows-right t)
+      (setq evil-split-window-below t)
+      (evil-mode 1))
+
+    (use-package evil-collection
+      :after evil
+      :ensure t
+      :config
+      (evil-collection-init))
+  #+end_src
+
+** Misc Features
+  Miscellaneous features, such as zooming in/out with keys, along with
+  showing line numbers.
+
+  #+begin_src emacs-lisp
+    (global-set-key (kbd "C-=") 'text-scale-increase)
+    (global-set-key (kbd "C--") 'text-scale-decrease)
+
+    (global-display-line-numbers-mode 1)
+    (global-visual-line-mode t)
+  #+end_src
+
+** Key Bindings
+  Another Core part of piratemacs are the speedy keybindings, that are
+  geared for a fast editing experience. To achive this, we use [[https://github.com/noctuid/general.el][general.el]].
+
+  #+begin_src emacs-lisp
+    (use-package general
+      :ensure t
+      :config
+      (general-evil-setup t))
+
+    ;; SPC (space) is the primary modifier
+    (nvmap :prefix "SPC"
+	   ;; Basics
+	   "SPC" `(counsel-M-x :which-key "M-x")
+           "r" `((lambda () (interactive) (load-file (expand-file-name "init.el" user-emacs-directory))) :which-key "Reload Emacs Config")
+
+	   ;; File commands
+	   "f r"   `(counsel-recentf :which-key "Search Recent Files")
+	   "f ." `(find-file :which-key "Find file"))
+  #+end_src
+  
+* UI Settings
+** Emacs Theme
+  As of right now, we steal our theme from doom emacs, but this might
+  change soon :-). The actual theme used is doom-one-light, but feel free to change that.
+
+  #+begin_src emacs-lisp
+    (use-package doom-themes
+      :ensure t)
+    (setq doom-themes-enable-bold t
+	  doom-themes-enable-italic t)
+    (load-theme 'doom-one-light t)
+  #+end_src
+
+** Splash Screen
+  A key part of piratemacs is the splash screen. We use emacs-dashboard for this...
+  
+  #+begin_src emacs-lisp
+    (use-package dashboard
+      :ensure t
+      :diminish dashboard-mode
+      :config
+      (setq dashboard-banner-logo-title "Pirate Emacs")
+      (setq dashboard-startup-banner (expand-file-name "assets/logo_full.png" user-emacs-directory))
+
+      (setq dashboard-items '((recents  . 10)
+			      (bookmarks . 10)))
+
+      (setq dashboard-set-footer t
+            dashboard-footer (format "Brought to you by cooligans (aka Uiop Pilon), %s" (format-time-string "%Y")))
+      (dashboard-setup-startup-hook))
+  #+end_src
+
+** Modeline
+  On contrary to what the name suggests, Doom Modeline is not a Doom
+  package (although its used in DOOM and SpaceMacs). We use it since it looks really nice.
+
+  #+begin_src emacs-lisp
+    (use-package doom-modeline
+      :ensure t
+      :init (doom-modeline-mode))
+    
+    (setq doom-modeline-buffer-encoding nil)
+  #+end_src
+
+** WHICH Key
+  A Key Binding auto-completer, its quite useful.
+
+  #+begin_src emacs-lisp
+    (use-package which-key
+      :ensure t
+      :init (which-key-mode))
+  #+end_src
+
+** Disable UI Clutter
+  Remove the Menu, Toolbar and Scrollbar. Also disable the default Emacs splash screen.
+
+  #+begin_src emacs-lisp
+    (menu-bar-mode -1)
+    (tool-bar-mode -1)
+    (toggle-scroll-bar -1)
+
+    (setq inhibit-splash-screen t)
+    (setq inhibit-startup-message t)
+  #+end_src
+  
