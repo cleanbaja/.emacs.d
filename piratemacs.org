@@ -74,13 +74,24 @@ Tell the user the pirates are coming...
 
     ;; SPC (space) is the primary modifier
     (nvmap :prefix "SPC"
-	   ;; Basics
-	   "SPC" `(counsel-M-x :which-key "M-x")
-           "r" `((lambda () (interactive) (load-file (expand-file-name "init.el" user-emacs-directory))) :which-key "Reload Emacs Config")
+      ;; Basics
+      "SPC" `(counsel-M-x :which-key "M-x")
+      "q"   `(save-buffers-kill-terminal :which-key "Exit emacs")
+      "r"   `((lambda () (interactive)
+       (load-file (expand-file-name
+	       "init.el" 
+	       user-emacs-directory))) :which-key "Reload Emacs Config")
 
-	   ;; File commands
-	   "f r"   `(counsel-recentf :which-key "Search Recent Files")
-	   "f ." `(find-file :which-key "Find file"))
+      ;; File commands
+      "f o" `(counsel-recentf :which-key "Search Recent Files")
+      "f ." `(find-file :which-key "Find file")
+      "f r" `(rename-file :which-key "Rename file")
+
+      ;; Window commands
+      "w d" `(evil-window-delete :which-key "Close Window")
+      "w n" `(evil-window-new :which-key "Create Window")
+      "w s" `(evil-window-split :which-key "Horizontally split window")
+      "w v" `(evil-window-vsplit :which-key "Vertically split window")) 
   #+end_src
   
 * UI Settings
@@ -94,6 +105,9 @@ Tell the user the pirates are coming...
     (setq doom-themes-enable-bold t
 	  doom-themes-enable-italic t)
     (load-theme 'doom-one-light t)
+
+    ;; Also install all-the-fonts since its required by many things (like the splash-screen)
+    (use-package all-the-fonts :ensure t)
   #+end_src
 
 ** Splash Screen
@@ -107,8 +121,8 @@ Tell the user the pirates are coming...
       (setq dashboard-banner-logo-title "Pirate Emacs")
       (setq dashboard-startup-banner (expand-file-name "assets/logo_full.png" user-emacs-directory))
 
-      (setq dashboard-items '((recents  . 10)
-			      (bookmarks . 10)))
+      (setq dashboard-items '((recents  . 5)
+			      (projects . 5)))
 
       (setq dashboard-set-footer t
             dashboard-footer (format "Brought to you by cooligans (aka Uiop Pilon), %s" (format-time-string "%Y")))
