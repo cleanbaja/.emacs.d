@@ -1,0 +1,34 @@
+#+TITLE: Piratemacs (Rust support)
+#+AUTHOR: Yusuf M (cleanbaja)
+#+DESCRIPTION: Adds Rust support to piratemacs
+
+* Rust Mode
+  Rust mode [[https://github.com/rust-lang/rust-mode][rust-mode]] is a emacs minor mode that
+  adds useful features for Rust, such as syntax
+  highlighting, cargo integration and auto-completion.
+
+  #+begin_src emacs-lisp
+    (use-package rust-mode
+      :ensure t)
+
+    ;; Properly indent according to the rust standards
+    (add-hook `rust-mode-hook
+              (lambda () (setq indent-tabs-mode nil)))
+    ;; Setup LSP Support
+    (add-hook 'rust-mode-hook #'lsp)
+  #+end_src
+
+* Keybindings
+  Provide keybindings to common rust tasks.
+
+  #+begin_src emacs-lisp
+  (nvmap :prefix "SPC"
+      "r f" `(rust-format-buffer :which-key "Format this file (rust)")
+      "r r" `(rust-run :which-key "Run this crate")
+      "r t" `(rust-test :which-key "Test this crate")
+      "r c" `(rust-compile :which-key "Compile this crate")
+      "r C" `(rust-check :which-key "Check this crate"))
+  #+end_src
+
+
+  

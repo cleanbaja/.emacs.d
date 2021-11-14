@@ -77,7 +77,7 @@ Tell the user the pirates are coming...
       ;; Basics
       "SPC" `(counsel-M-x :which-key "M-x")
       "q"   `(save-buffers-kill-terminal :which-key "Exit emacs")
-      "r"   `((lambda () (interactive)
+      ". r"   `((lambda () (interactive)
        (load-file (expand-file-name
 	       "init.el" 
 	       user-emacs-directory))) :which-key "Reload Emacs Config")

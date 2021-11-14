@@ -9,6 +9,7 @@ recentf
 # Ignore build artifacts
 elpa
 piratemacs.el
-lang-go.el
-
+lang/go.el
+lang/generic.el
+lang/rust.el
 

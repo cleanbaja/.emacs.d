@@ -1,0 +1,19 @@
+#+TITLE: Piratemacs (Golang support)
+#+AUTHOR: Yusuf M (cleanbaja)
+#+DESCRIPTION: Adds golang support to piratemacs
+
+* Go Mode
+  Go mode [[https://github.com/dominikh/go-mode.el][go-mode.el]] is a emacs minor mode that
+  adds useful features for golang, such as
+  syntax highlighting, go fmt support and auto-completion.
+
+  #+begin_src emacs-lisp
+    (use-package go-mode
+      :ensure t)
+
+    ;; Enable lsp integration
+    (add-hook `go-mode-hook `lsp-deferred)
+  #+end_src
+
+
+  
