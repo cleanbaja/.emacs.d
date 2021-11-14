@@ -1,4 +1,4 @@
-#+TITLE: Piratemacs (Main Config)
+#+TITLE: Piratemacs
 #+AUTHOR: Yusuf M (cleanbaja)
 #+DESCRIPTION: Piratemacs is a emacs configuration for maximum productivity (it also helps hide your treasure!)
 
@@ -29,7 +29,7 @@ Tell the user the pirates are coming...
 
 ** Evil Support
   A core part of piratemacs is Evil Mode (which provides vim keybindings for emacs). It is especially
-  important because I know like ~10 emacs keys, and I use evil-mode for the rest
+  important because I know like ~10 emacs keys, and I use evil-mode for the rest.
 
   *NOTE*: We install evil-magit to make evil keybindings work with magit
   
@@ -97,17 +97,14 @@ Tell the user the pirates are coming...
 * UI Settings
 ** Emacs Theme
   As of right now, we steal our theme from doom emacs, but this might
-  change soon :-). The actual theme used is doom-one-light, but feel free to change that.
+  change soon :-). The actual theme used is doom-nord, but feel free to change that.
 
   #+begin_src emacs-lisp
     (use-package doom-themes
       :ensure t)
     (setq doom-themes-enable-bold t
 	  doom-themes-enable-italic t)
-    (load-theme 'doom-one-light t)
-
-    ;; Also install all-the-fonts since its required by many things (like the splash-screen)
-    (use-package all-the-fonts :ensure t)
+    (load-theme 'doom-nord t)
   #+end_src
 
 ** Splash Screen
@@ -119,7 +116,7 @@ Tell the user the pirates are coming...
       :diminish dashboard-mode
       :config
       (setq dashboard-banner-logo-title "Pirate Emacs")
-      (setq dashboard-startup-banner (expand-file-name "assets/logo_full.png" user-emacs-directory))
+      (setq dashboard-startup-banner (expand-file-name "assets/logo_clear.png" user-emacs-directory))
 
       (setq dashboard-items '((recents  . 5)
 			      (projects . 5)))
