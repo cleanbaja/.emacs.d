@@ -110,7 +110,7 @@ Tell the user the pirates are coming...
 ** Splash Screen
   A key part of piratemacs is the splash screen. We use emacs-dashboard for this...
   
-  #+begin_src 
+  #+begin_src emacs-lisp 
     (use-package dashboard
       :ensure t
       :diminish dashboard-mode

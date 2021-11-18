@@ -2,7 +2,8 @@
 
 # PirateMacs
 
-[![Jetbrains Mono](img.shields.io/badge/jetbrains-mono-orange)](jetbrains.com/lp/mono)
+[![Jetbrains Mono](img.shields.io/badge/jetbrains-mono-orange)](jetbrains.com/lp/mono) |
+[![forthebadge](https://forthebadge.com/images/badges/made-with-crayons.svg)](https://forthebadge.com)
 
 </div>
 
