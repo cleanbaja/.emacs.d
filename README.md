@@ -2,7 +2,7 @@
 
 # PirateMacs
 
-[![Jetbrains Mono](img.shields.io/badge/jetbrains-mono-orange)](jetbrains.com/lp/mono)
+[![Jetbrains Mono](https://img.shields.io/badge/Jetbrains-Mono-orange)](https://jetbrains.com/lp/mono)
 
 </div>
 
@@ -17,13 +17,13 @@ $ cd <EMACS-DIR>
 $ git clone --depth 1 https://github.com/cleanbaja/.emacs.d
 ```
 
-*NOTE:* A working [Emacs](gnu.org/software/emacs) installation is required!
+**NOTE: A working [Emacs](gnu.org/software/emacs) installation is required!**
 
-On windows, <EMACS-DIR> is C:\Users\{Username}\AppData\Roaming
-On Unix systems, <EMACS-DIR> is /home/{Username}/
+On windows, <EMACS-DIR> is `C:\Users\{Username}\AppData\Roaming`<br>
+On Unix systems, <EMACS-DIR> is `/home/{Username}/`
 
-Upon installation, install the Jetbrains Mono font (click jetbrains badge for link) 
-Finally, run emacs and type`<ALT>-x all-the-icons-install-fonts`
+Upon installation, install the Jetbrains Mono font (click jetbrains badge for link) <br>
+Finally, run emacs and type `<ALT>-x all-the-icons-install-fonts`
 
 ## Basics
 
