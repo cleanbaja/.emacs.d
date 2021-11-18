@@ -4,10 +4,10 @@
   "piratemacs.org"
   user-emacs-directory))
 
-;; Load the generic language config
+;; Load the UI config
 (org-babel-load-file
  (expand-file-name
-  "lang/generic.org"
+  "ui.org"
   user-emacs-directory))
 
 ;; Uncomment to enable golang support

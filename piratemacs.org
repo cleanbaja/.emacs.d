@@ -1,6 +1,6 @@
 #+TITLE: Piratemacs
 #+AUTHOR: Yusuf M (cleanbaja)
-#+DESCRIPTION: Piratemacs is a emacs configuration for maximum productivity (it also helps hide your treasure!)
+#+DESCRIPTION: Piratemacs is a emacs configuration for maximum productivity (it also sails the 7 seas!)
 
 Tell the user the pirates are coming...
 #+begin_src emacs-lisp
@@ -94,75 +94,34 @@ Tell the user the pirates are coming...
       "w v" `(evil-window-vsplit :which-key "Vertically split window")) 
   #+end_src
   
-* UI Settings
-** Emacs Theme
-  As of right now, we steal our theme from doom emacs, but this might
-  change soon :-). The actual theme used is doom-nord, but feel free to change that.
+* Developer Support
+
+** LSP Mode
+  LSP Mode adds support for interfacing with the lsp protocol
+  which provides intellegent codesense among other features
 
   #+begin_src emacs-lisp
-    (use-package doom-themes
-      :ensure t)
-    (setq doom-themes-enable-bold t
-	  doom-themes-enable-italic t)
-    (load-theme 'doom-nord t)
-  #+end_src
-
-** Splash Screen
-  A key part of piratemacs is the splash screen. We use emacs-dashboard for this...
-  
-  #+begin_src emacs-lisp 
-    (use-package dashboard
+    (use-package lsp-mode
       :ensure t
-      :diminish dashboard-mode
       :init
-      (setq dashboard-banner-logo-title "Pirate Emacs")
-      (setq dashboard-startup-banner (expand-file-name "assets/logo_mid.png" user-emacs-directory))
+      :hook (
+          (lsp-mode . lsp-enable-which-key-integration))
+      :commands lsp)
 
-      (setq dashboard-items '((recents  . 5)
-			      (projects . 5)))
-
-      (setq dashboard-center-content t)
-      (dashboard-setup-startup-hook))
+    (use-package lsp-ui :hook (lsp-mode . lsp-ui-mode))
+    (use-package company :ensure t)
+    (company-mode)
   #+end_src
 
-** Fonts
-  We use Jetbrains Mono as the default system font, and it should
-  be installed. [[jetbrains.com/lp/mono][Click here to install!]]
+** FlyCheck
+  Flycheck provides on the go syntax checking and functions for things
+  like compiling and formatting code.
 
   #+begin_src emacs-lisp
-    (set-face-attribute 'default nil :font "JetBrains Mono" :height 100) 
-  #+end_src
-
-** Modeline
-  On contrary to what the name suggests, Doom Modeline is not a Doom
-  package (although its used in DOOM and SpaceMacs). We use it since it looks really nice.
-
-  #+begin_src emacs-lisp
-    (use-package doom-modeline
+    (use-package flycheck
       :ensure t
-      :init (doom-modeline-mode))
-    
-    (setq doom-modeline-buffer-encoding nil)
+      :init (global-flycheck-mode))
   #+end_src
 
-** WHICH Key
-  A Key Binding auto-completer, its quite useful.
 
-  #+begin_src emacs-lisp
-    (use-package which-key
-      :ensure t
-      :init (which-key-mode))
-  #+end_src
-
-** Disable UI Clutter
-  Remove the Menu, Toolbar and Scrollbar. Also disable the default Emacs splash screen.
-
-  #+begin_src emacs-lisp
-    (menu-bar-mode -1)
-    (tool-bar-mode -1)
-    (toggle-scroll-bar -1)
-
-    (setq inhibit-splash-screen t)
-    (setq inhibit-startup-message t)
-  #+end_src
   
