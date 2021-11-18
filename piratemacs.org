@@ -110,20 +110,27 @@ Tell the user the pirates are coming...
 ** Splash Screen
   A key part of piratemacs is the splash screen. We use emacs-dashboard for this...
   
-  #+begin_src emacs-lisp
+  #+begin_src 
     (use-package dashboard
       :ensure t
       :diminish dashboard-mode
-      :config
+      :init
       (setq dashboard-banner-logo-title "Pirate Emacs")
-      (setq dashboard-startup-banner (expand-file-name "assets/logo_clear.png" user-emacs-directory))
+      (setq dashboard-startup-banner (expand-file-name "assets/logo_mid.png" user-emacs-directory))
 
       (setq dashboard-items '((recents  . 5)
 			      (projects . 5)))
 
-      (setq dashboard-set-footer t
-            dashboard-footer (format "Brought to you by cooligans (aka Uiop Pilon), %s" (format-time-string "%Y")))
+      (setq dashboard-center-content t)
       (dashboard-setup-startup-hook))
+  #+end_src
+
+** Fonts
+  We use Jetbrains Mono as the default system font, and it should
+  be installed. [[jetbrains.com/lp/mono][Click here to install!]]
+
+  #+begin_src emacs-lisp
+    (set-face-attribute 'default nil :font "JetBrains Mono" :height 100) 
   #+end_src
 
 ** Modeline
