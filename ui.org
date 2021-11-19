@@ -52,17 +52,8 @@
     (setq doom-modeline-buffer-encoding nil)
   #+end_src
 
-** WHICH Key
-  A Key Binding auto-completer, its quite useful.
-
-  #+begin_src emacs-lisp
-    (use-package which-key
-      :ensure t
-      :init (which-key-mode))
-  #+end_src
-
 ** Disable UI Clutter
-  Remove the Menu, Toolbar and Scrollbar. Also disable the default Emacs splash screen.
+  Remove the Menu, Toolbar and Scrollbar. Also disable the default Emacs splash screen, among other things.
 
   #+begin_src emacs-lisp
     (menu-bar-mode -1)
@@ -71,5 +62,14 @@
 
     (setq inhibit-splash-screen t)
     (setq inhibit-startup-message t)
+
+    ;; Setup smoother scrolling
+    (setq scroll-conservatively 101)
+    (setq mouse-wheel-progressive-speed t)
+    (setq mouse-wheel-follow-mouse `t)
+    (setq mouse-wheel-scroll-amount `(3 ((shift) . 3))) ; How many lines to scroll at at time
+
+    ;; Also disable the blinking cursor
+    (blink-cursor-mode 0)
   #+end_src
   

@@ -96,6 +96,15 @@ Tell the user the pirates are coming...
   
 * Developer Support
 
+** WHICH Key
+  A Key Binding auto-completer, its quite useful.
+
+  #+begin_src emacs-lisp
+    (use-package which-key
+      :ensure t
+      :init (which-key-mode))
+  #+end_src
+
 ** LSP Mode
   LSP Mode adds support for interfacing with the lsp protocol
   which provides intellegent codesense among other features
